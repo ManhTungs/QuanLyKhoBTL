@@ -1,0 +1,70 @@
+﻿<Window x:Class="QuanLyKhoDemo.View.InputWindow.MainInputWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QuanLyKhoDemo.View.InputWindow"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="MainInputWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition ></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <materialDesign:Card Grid.Row="0" Margin="5">
+            <WrapPanel>
+                <TextBox
+                     Margin="5 5 20 5"
+VerticalAlignment="Center"
+materialDesign:HintAssist.Hint="Tên Vật tư"
+Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                <DatePicker
+                  Margin="5 5 20 0"
+Width="100"
+materialDesign:HintAssist.Hint="Ngày nhập"
+materialDesign:TextFieldAssist.HasClearButton="True"
+Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+                <TextBox
+                    Margin="5 5 20 5"
+VerticalAlignment="Center"
+materialDesign:HintAssist.Hint="Số lượng"
+Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                <TextBox
+                     Margin="5 5 20 5"
+VerticalAlignment="Center"
+materialDesign:HintAssist.Hint="Giá nhập "
+Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                <TextBox
+                     Margin="5 5 20 5"
+VerticalAlignment="Center"
+materialDesign:HintAssist.Hint="Giá xuất "
+Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                <TextBox
+                     Margin="5 5 20 5"
+VerticalAlignment="Center"
+materialDesign:HintAssist.Hint="Trạng thái nhập"
+Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                
+            </WrapPanel>
+
+        </materialDesign:Card>
+
+        <materialDesign:Card Grid.Row="1" Margin="5">
+            <WrapPanel>
+                <Button
+    Width="100"
+ Margin="20 20 20 20"
+  Content="Thêm"
+  IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+  Style="{StaticResource MaterialDesignFlatSecondaryLightBgButton}"
+  ToolTip="MaterialDesignFlatSecondaryLightBgButton" />
+               
+            </WrapPanel>
+        </materialDesign:Card>
+
+        
+    </Grid>
+</Window>

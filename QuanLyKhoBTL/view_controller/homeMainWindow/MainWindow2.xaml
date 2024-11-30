@@ -1,0 +1,189 @@
+﻿<Window x:Class="QuanLyKhoDemo.View.MainWindow2"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QuanLyKhoDemo.View"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="MainWindow2" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions >
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition ></RowDefinition>
+
+
+        </Grid.RowDefinitions>
+        <!-- menu-->
+        <Grid Grid.Row="0">
+            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Transparent"  >
+                <Grid.Resources>
+                    <Style TargetType="Button">
+                        <Setter Property="Margin" Value="2 4 2 4"></Setter>
+                        <Setter Property="Width" Value="90"></Setter>
+                        <Setter Property="Height" Value="50"></Setter>
+                        <Setter Property="Background" Value="LightCyan"></Setter>
+                    </Style>
+                </Grid.Resources>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    
+                </Grid.ColumnDefinitions>
+                <Button Click="btn_show_input_window" Grid.Column="0" ToolTip="Nhập kho" >
+                    <Grid>
+                        <Grid.RowDefinitions >
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <TextBlock HorizontalAlignment="Center" >Nhập kho</TextBlock>
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <materialDesign:PackIcon Width="27" Height="27" HorizontalAlignment="Center" Kind="ArrowDownBold" />
+                        </Grid>
+                    </Grid>
+                </Button>
+
+                <Button Click="btn_show_output_window" Grid.Column="1" ToolTip="Xuất kho" >
+                    <Grid>
+                        <Grid.RowDefinitions >
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <TextBlock HorizontalAlignment="Center" >Xuất kho</TextBlock>
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <materialDesign:PackIcon Width="27" Height="27" HorizontalAlignment="Center" Kind="ArrowUpBold" />
+                        </Grid>
+                    </Grid>
+                </Button>
+                <Button Click="btn_show_object_window" Grid.Column="2" ToolTip="Vật tư" >
+                    <Grid>
+                        <Grid.RowDefinitions >
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <TextBlock HorizontalAlignment="Center" >Vật tư</TextBlock>
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <materialDesign:PackIcon Width="27" Height="27" HorizontalAlignment="Center" Kind="PackageVariantClosed" />
+                        </Grid>
+                    </Grid>
+                </Button>
+                <Button Click="btn_show_unit_window" Grid.Column="3" ToolTip="Đơn vị đo" >
+                    <Grid>
+                        <Grid.RowDefinitions >
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <TextBlock HorizontalAlignment="Center" >Đơn vị đo</TextBlock>
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <materialDesign:PackIcon Width="27" Height="27" HorizontalAlignment="Center" Kind="Altimeter" />
+                        </Grid>
+                    </Grid>
+                </Button>
+                <Button Click="btn_show_suppliers_window" Grid.Column="4" ToolTip="Nhà cung cấp" >
+                    <Grid>
+                        <Grid.RowDefinitions >
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <TextBlock HorizontalAlignment="Center" >Nhà cung cấp</TextBlock>
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <materialDesign:PackIcon Width="27" Height="27" HorizontalAlignment="Center" Kind="Factory" />
+                        </Grid>
+                    </Grid>
+                </Button>
+                <Button Click="btn_show_customers_window" Grid.Column="5" ToolTip="Khách hàng" >
+                    <Grid>
+                        <Grid.RowDefinitions >
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <TextBlock HorizontalAlignment="Center" >Khách hàng</TextBlock>
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <materialDesign:PackIcon Width="27" Height="27" HorizontalAlignment="Center" Kind="AccountStar" />
+                        </Grid>
+                    </Grid>
+                </Button>
+                
+            </Grid>
+        </Grid>
+
+        <!-- main-->
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions >
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <!--filter-->
+            
+
+            <!--list-->
+            <materialDesign:Card Grid.Row="1" Margin="10">
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid  Grid.Column="0">
+                            <DatePicker
+Margin="0 0 10 0"
+materialDesign:HintAssist.Hint="Ngày bắt đầu"
+materialDesign:TextFieldAssist.HasClearButton="True"
+Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <DatePicker
+ Margin="0 0 10 0"
+materialDesign:HintAssist.Hint="Ngày kết thúc"
+materialDesign:TextFieldAssist.HasClearButton="True"
+Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+                        </Grid>
+                        <Grid Grid.Column="2">
+                            <Button
+
+Content="Lọc"
+IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+Style="{StaticResource MaterialDesignRaisedSecondaryLightButton}"
+ToolTip="Resource name: MaterialDesignRaisedSecondaryLightButton" />
+                        </Grid>
+                    </Grid>
+                    <Grid Grid.Row="1" VerticalAlignment="Stretch"  >
+                        <ListView Name="inventory_list">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="STT" DisplayMemberBinding="{Binding STT}"></GridViewColumn>
+                                    <GridViewColumn Header="Tên Vật tư" DisplayMemberBinding="{Binding Object.DisplayName}"></GridViewColumn>
+                                    <GridViewColumn Header="Số lượng tồn" DisplayMemberBinding="{Binding Count}"></GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </Grid>
+                </Grid>
+            </materialDesign:Card>
+        </Grid>
+    </Grid>
+</Window>
