@@ -8,6 +8,56 @@
         mc:Ignorable="d"
         Title="MainUnitWindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition ></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <materialDesign:Card Grid.Row="0" Margin="5">
+            <TextBox
+                TextChanged="text_change"
+                Name="name_unit"
+  VerticalAlignment="Center"
+  materialDesign:HintAssist.Hint="Nhập tên đơn vị đo "
+  Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+        </materialDesign:Card>
+
+        <materialDesign:Card Grid.Row="1" Margin="5">
+            <WrapPanel>
+                <Button
+                    Name="btn_add1"
+                    Click="btn_add"
+                    
+    Width="100"
+ Margin="20 20 20 20"
+  Content="Thêm"
+  IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+  Style="{StaticResource MaterialDesignFlatSecondaryLightBgButton}"
+  ToolTip="MaterialDesignFlatSecondaryLightBgButton" />
+                <Button
+                    Name="btn_edit1"
+                    Click="btn_edit"
+                   
+Width="100"
+ Margin="20 20 20 20"
+Content="Sửa"
+IsEnabled="False"
+Style="{StaticResource MaterialDesignFlatSecondaryLightBgButton}"
+ToolTip="MaterialDesignFlatSecondaryLightBgButton" />
+            </WrapPanel>
+        </materialDesign:Card>
+
+        <materialDesign:Card Grid.Row="2">
+            <ListView Name="unit_list" SelectionChanged="unit_list_SelectionChanged" >
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}"></GridViewColumn>
+                        <GridViewColumn Header="Đơn vị đo" DisplayMemberBinding="{Binding TenDonViDo}"></GridViewColumn>
+
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </materialDesign:Card>
     </Grid>
 </Window>
