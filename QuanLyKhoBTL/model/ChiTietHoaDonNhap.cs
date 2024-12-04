@@ -12,17 +12,13 @@ namespace QuanLyKhoBTL.model
     using System;
     using System.Collections.Generic;
     
-    public partial class OutputInfo
+    public partial class ChiTietHoaDonNhap
     {
-        public string Id { get; set; }
-        public string IdObject { get; set; }
-        public string IdOutputInfo { get; set; }
-        public int IdCustomer { get; set; }
-        public Nullable<int> Count { get; set; }
-        public string Status { get; set; }
+        public string MaHD { get; set; }
+        public string IDHangHoa { get; set; }
+        public Nullable<int> SoLuong { get; set; }
     
-        public virtual Customer Customer { get; set; }
-        public virtual Object Object { get; set; }
-        public virtual Output Output { get; set; }
+        public virtual HangHoa HangHoa { get; set; }
+        public virtual HoaDonNhap HoaDonNhap { get; set; }
     }
 }

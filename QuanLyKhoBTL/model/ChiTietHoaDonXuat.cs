@@ -12,18 +12,14 @@ namespace QuanLyKhoBTL.model
     using System;
     using System.Collections.Generic;
     
-    public partial class Unit
+    public partial class ChiTietHoaDonXuat
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Unit()
-        {
-            this.Objects = new HashSet<Object>();
-        }
+        public string MaHD { get; set; }
+        public string IDHangHoa { get; set; }
+        public string TenHangHoa { get; set; }
+        public Nullable<int> SoLuong { get; set; }
     
-        public int Id { get; set; }
-        public string DisplayName { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Object> Objects { get; set; }
+        public virtual HangHoa HangHoa { get; set; }
+        public virtual HoaDonXuat HoaDonXuat { get; set; }
     }
 }

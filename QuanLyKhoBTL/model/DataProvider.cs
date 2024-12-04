@@ -23,12 +23,12 @@ namespace QuanLyKhoBTL.model
                 _ins = value;
             }
         }
-        public QuanLyKhoEntities DB { get; set; }
+        public QuanLyKhoHangBTLEntities DB { get; set; }
         
 
         private DataProvider()
         {
-            DB=new QuanLyKhoEntities();
+            DB=new QuanLyKhoHangBTLEntities();
         }
     }
 }

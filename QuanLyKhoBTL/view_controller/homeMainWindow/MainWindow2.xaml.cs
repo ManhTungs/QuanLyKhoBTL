@@ -77,37 +77,37 @@ namespace QuanLyKhoDemo.View
 
          void loadInventory()
         {
-            _inventories = new ObservableCollection<Inventory>();
-            var objectList=DataProvider.Ins.DB.Objects;
-            int i = 1;
-            foreach (var item in objectList)
-            {
-                var InputList = DataProvider.Ins.DB.InputInfoes.Where(p => p.IdObject == item.Id);
-                var OutputList=DataProvider.Ins.DB.OutputInfoes.Where(p=>p.IdObject == item.Id);
+            //_inventories = new ObservableCollection<Inventory>();
+            //var objectList=DataProvider.Ins.DB.Objects;
+            //int i = 1;
+            //foreach (var item in objectList)
+            //{
+            //    var InputList = DataProvider.Ins.DB.InputInfoes.Where(p => p.IdObject == item.Id);
+            //    var OutputList=DataProvider.Ins.DB.OutputInfoes.Where(p=>p.IdObject == item.Id);
 
-                int sumInput=0;
-                int sumOutput=0;
+            //    int sumInput=0;
+            //    int sumOutput=0;
 
-                if (InputList != null)
-                {
-                    sumInput = (int)InputList.Sum(p => p.Count);
+            //    if (InputList != null)
+            //    {
+            //        sumInput = (int)InputList.Sum(p => p.Count);
 
-                }
+            //    }
 
-                if (OutputList != null)
-                {
-                    sumOutput = (int)OutputList.Sum(p => p.Count);
-                }
+            //    if (OutputList != null)
+            //    {
+            //        sumOutput = (int)OutputList.Sum(p => p.Count);
+            //    }
 
-                Inventory inventory = new Inventory();
-                inventory.STT = i;
-                inventory.Count = sumInput-sumOutput;
-                inventory.Object=item;
+            //    Inventory inventory = new Inventory();
+            //    inventory.STT = i;
+            //    inventory.Count = sumInput-sumOutput;
+            //    inventory.Object=item;
 
-                _inventories.Add(inventory);
-            }
+            //    _inventories.Add(inventory);
+            //}
 
-            inventory_list.ItemsSource = _inventories;
+            //inventory_list.ItemsSource = _inventories;
            
         }
     }

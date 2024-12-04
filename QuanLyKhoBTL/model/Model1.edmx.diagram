@@ -4,23 +4,23 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="6ff3073605f74374ad9d5afe89949ae4" Name="Diagram1">
-        <EntityTypeShape EntityType="QuanLyKhoModel.Customer" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QuanLyKhoModel.Input" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="QuanLyKhoModel.InputInfo" Width="1.5" PointX="5.25" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="QuanLyKhoModel.Object" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="QuanLyKhoModel.Output" Width="1.5" PointX="6" PointY="9" IsExpanded="true" />
-        <EntityTypeShape EntityType="QuanLyKhoModel.OutputInfo" Width="1.5" PointX="8.25" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="QuanLyKhoModel.Supplier" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="QuanLyKhoModel.sysdiagram" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QuanLyKhoModel.Unit" Width="1.5" PointX="0.75" PointY="2.375" IsExpanded="true" />
-        <AssociationConnector Association="QuanLyKhoModel.FK__OutputInf__IdCus__4CA06362" ManuallyRouted="false" />
-        <AssociationConnector Association="QuanLyKhoModel.FK__InputInfo__IdInp__45F365D3" ManuallyRouted="false" />
-        <AssociationConnector Association="QuanLyKhoModel.FK__InputInfo__Statu__44FF419A" ManuallyRouted="false" />
-        <AssociationConnector Association="QuanLyKhoModel.FK__Objects__IdSuppl__3E52440B" ManuallyRouted="false" />
-        <AssociationConnector Association="QuanLyKhoModel.FK__Objects__IdUnit__3D5E1FD2" ManuallyRouted="false" />
-        <AssociationConnector Association="QuanLyKhoModel.FK__OutputInf__Statu__4AB81AF0" ManuallyRouted="false" />
-        <AssociationConnector Association="QuanLyKhoModel.FK__OutputInf__IdOut__4BAC3F29" ManuallyRouted="false" />
+      <Diagram DiagramId="2cf64302b6c44069a9856e6674e0afc5" Name="Diagram1">
+        <EntityTypeShape EntityType="QuanLyKhoHangBTLModel.ChiTietHoaDonNhap" Width="1.5" PointX="5.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyKhoHangBTLModel.ChiTietHoaDonXuat" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyKhoHangBTLModel.DonViDo" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyKhoHangBTLModel.HangHoa" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyKhoHangBTLModel.HoaDonNhap" Width="1.5" PointX="3" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyKhoHangBTLModel.HoaDonXuat" Width="1.5" PointX="3" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyKhoHangBTLModel.KhachHang" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyKhoHangBTLModel.NhaCungCap" Width="1.5" PointX="0.75" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyKhoHangBTLModel.sysdiagram" Width="1.5" PointX="5.75" PointY="7.125" IsExpanded="true" />
+        <AssociationConnector Association="QuanLyKhoHangBTLModel.FK__ChiTietHo__IDHan__440B1D61" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyKhoHangBTLModel.FK__ChiTietHoa__MaHD__4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyKhoHangBTLModel.FK__ChiTietHo__IDHan__4AB81AF0" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyKhoHangBTLModel.FK__ChiTietHoa__MaHD__49C3F6B7" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyKhoHangBTLModel.FK__HangHoa__IdDonVi__398D8EEE" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyKhoHangBTLModel.FK__HoaDonNha__MaNCC__403A8C7D" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyKhoHangBTLModel.FK__HoaDonXuat__MaKH__46E78A0C" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

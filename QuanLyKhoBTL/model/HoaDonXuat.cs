@@ -12,18 +12,21 @@ namespace QuanLyKhoBTL.model
     using System;
     using System.Collections.Generic;
     
-    public partial class Input
+    public partial class HoaDonXuat
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Input()
+        public HoaDonXuat()
         {
-            this.InputInfoes = new HashSet<InputInfo>();
+            this.ChiTietHoaDonXuats = new HashSet<ChiTietHoaDonXuat>();
         }
     
-        public string Id { get; set; }
-        public Nullable<System.DateTime> DateInput { get; set; }
+        public string MaHD { get; set; }
+        public Nullable<int> MaKH { get; set; }
+        public Nullable<System.DateTime> NgayXuat { get; set; }
+        public Nullable<decimal> TongGia { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<InputInfo> InputInfoes { get; set; }
+        public virtual ICollection<ChiTietHoaDonXuat> ChiTietHoaDonXuats { get; set; }
+        public virtual KhachHang KhachHang { get; set; }
     }
 }

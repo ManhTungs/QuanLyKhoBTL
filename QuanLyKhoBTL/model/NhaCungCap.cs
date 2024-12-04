@@ -12,23 +12,22 @@ namespace QuanLyKhoBTL.model
     using System;
     using System.Collections.Generic;
     
-    public partial class Supplier
+    public partial class NhaCungCap
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Supplier()
+        public NhaCungCap()
         {
-            this.Objects = new HashSet<Object>();
+            this.HoaDonNhaps = new HashSet<HoaDonNhap>();
         }
     
-        public int Id { get; set; }
-        public string DisplayName { get; set; }
-        public string Address { get; set; }
-        public string Phone { get; set; }
+        public int MaNCC { get; set; }
+        public string TenNCC { get; set; }
+        public string DiaChi { get; set; }
+        public string SDT { get; set; }
         public string Email { get; set; }
-        public string MoreInfo { get; set; }
-        public Nullable<System.DateTime> ContractDate { get; set; }
+        public Nullable<System.DateTime> NgayHopTac { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Object> Objects { get; set; }
+        public virtual ICollection<HoaDonNhap> HoaDonNhaps { get; set; }
     }
 }

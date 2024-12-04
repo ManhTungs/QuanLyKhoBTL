@@ -12,28 +12,26 @@ namespace QuanLyKhoBTL.model
     using System;
     using System.Collections.Generic;
     
-    public partial class Object
+    public partial class HangHoa
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Object()
+        public HangHoa()
         {
-            this.InputInfoes = new HashSet<InputInfo>();
-            this.OutputInfoes = new HashSet<OutputInfo>();
+            this.ChiTietHoaDonNhaps = new HashSet<ChiTietHoaDonNhap>();
+            this.ChiTietHoaDonXuats = new HashSet<ChiTietHoaDonXuat>();
         }
     
-        public string Id { get; set; }
-        public string DisplayName { get; set; }
-        public string Address { get; set; }
-        public int IdUnit { get; set; }
-        public int IdSupplier { get; set; }
-        public string QRCode { get; set; }
-        public string BarCode { get; set; }
+        public string IDHangHoa { get; set; }
+        public string TenHangHoa { get; set; }
+        public Nullable<int> IdDonViDo { get; set; }
+        public Nullable<int> SoLuong { get; set; }
+        public Nullable<decimal> GiaThanh { get; set; }
+        public string MoTa { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<InputInfo> InputInfoes { get; set; }
-        public virtual Supplier Supplier { get; set; }
-        public virtual Unit Unit { get; set; }
+        public virtual ICollection<ChiTietHoaDonNhap> ChiTietHoaDonNhaps { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OutputInfo> OutputInfoes { get; set; }
+        public virtual ICollection<ChiTietHoaDonXuat> ChiTietHoaDonXuats { get; set; }
+        public virtual DonViDo DonViDo { get; set; }
     }
 }

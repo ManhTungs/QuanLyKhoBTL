@@ -4,79 +4,82 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="QuanLyKhoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Customer">
+      <Schema Namespace="QuanLyKhoHangBTLModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ChiTietHoaDonNhap">
+          <Key>
+            <PropertyRef Name="MaHD" />
+            <PropertyRef Name="IDHangHoa" />
+          </Key>
+          <Property Name="MaHD" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="IDHangHoa" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="SoLuong" Type="int" />
+        </EntityType>
+        <EntityType Name="ChiTietHoaDonXuat">
+          <Key>
+            <PropertyRef Name="MaHD" />
+            <PropertyRef Name="IDHangHoa" />
+          </Key>
+          <Property Name="MaHD" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="IDHangHoa" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="TenHangHoa" Type="nvarchar" MaxLength="100" />
+          <Property Name="SoLuong" Type="int" />
+        </EntityType>
+        <EntityType Name="DonViDo">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="DisplayName" Type="nvarchar(max)" />
-          <Property Name="Address" Type="nvarchar(max)" />
-          <Property Name="Phone" Type="nvarchar" MaxLength="20" />
-          <Property Name="Email" Type="nvarchar" MaxLength="200" />
-          <Property Name="MoreInfo" Type="nvarchar(max)" />
-          <Property Name="ContractDate" Type="datetime" />
+          <Property Name="TenDonViDo" Type="nvarchar(max)" />
         </EntityType>
-        <EntityType Name="Input">
+        <EntityType Name="HangHoa">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="IDHangHoa" />
           </Key>
-          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="DateInput" Type="datetime" />
+          <Property Name="IDHangHoa" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="TenHangHoa" Type="nvarchar" MaxLength="100" />
+          <Property Name="IdDonViDo" Type="int" />
+          <Property Name="SoLuong" Type="int" />
+          <Property Name="GiaThanh" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="MoTa" Type="nvarchar" MaxLength="100" />
         </EntityType>
-        <EntityType Name="InputInfo">
+        <EntityType Name="HoaDonNhap">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="MaHD" />
           </Key>
-          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="IdObject" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="IdInput" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="Count" Type="int" />
-          <Property Name="InputPrice" Type="float" />
-          <Property Name="OutputPrice" Type="float" />
-          <Property Name="Status" Type="nvarchar(max)" />
+          <Property Name="MaHD" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="MaNCC" Type="int" />
+          <Property Name="NgayNhap" Type="date" />
         </EntityType>
-        <EntityType Name="Objects">
+        <EntityType Name="HoaDonXuat">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="MaHD" />
           </Key>
-          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="DisplayName" Type="nvarchar(max)" />
-          <Property Name="Address" Type="nvarchar(max)" />
-          <Property Name="IdUnit" Type="int" Nullable="false" />
-          <Property Name="IdSupplier" Type="int" Nullable="false" />
-          <Property Name="QRCode" Type="nvarchar(max)" />
-          <Property Name="BarCode" Type="nvarchar(max)" />
+          <Property Name="MaHD" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="MaKH" Type="int" />
+          <Property Name="NgayXuat" Type="date" />
+          <Property Name="TongGia" Type="numeric" Precision="18" Scale="2" />
         </EntityType>
-        <EntityType Name="Output">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="DateOutput" Type="datetime" />
-        </EntityType>
-        <EntityType Name="OutputInfo">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="IdObject" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="IdOutputInfo" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="IdCustomer" Type="int" Nullable="false" />
-          <Property Name="Count" Type="int" />
-          <Property Name="Status" Type="nvarchar(max)" />
-        </EntityType>
-        <EntityType Name="Supplier">
+        <EntityType Name="KhachHang">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="DisplayName" Type="nvarchar(max)" />
-          <Property Name="Address" Type="nvarchar(max)" />
-          <Property Name="Phone" Type="nvarchar" MaxLength="20" />
-          <Property Name="Email" Type="nvarchar" MaxLength="200" />
-          <Property Name="MoreInfo" Type="nvarchar(max)" />
-          <Property Name="ContractDate" Type="datetime" />
+          <Property Name="TenKH" Type="nvarchar" MaxLength="100" />
+          <Property Name="DiaChi" Type="nvarchar" MaxLength="100" />
+          <Property Name="SDT" Type="nvarchar" MaxLength="100" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="NgayHoptac" Type="datetime" />
+        </EntityType>
+        <EntityType Name="NhaCungCap">
+          <Key>
+            <PropertyRef Name="MaNCC" />
+          </Key>
+          <Property Name="MaNCC" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenNCC" Type="nvarchar" MaxLength="100" />
+          <Property Name="DiaChi" Type="nvarchar" MaxLength="100" />
+          <Property Name="SDT" Type="nvarchar" MaxLength="100" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="NgayHopTac" Type="datetime" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -88,226 +91,223 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
-        <EntityType Name="Unit">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="DisplayName" Type="nvarchar(max)" />
-        </EntityType>
-        <Association Name="FK__InputInfo__IdInp__45F365D3">
-          <End Role="Input" Type="Self.Input" Multiplicity="1" />
-          <End Role="InputInfo" Type="Self.InputInfo" Multiplicity="*" />
+        <Association Name="FK__ChiTietHo__IDHan__440B1D61">
+          <End Role="HangHoa" Type="Self.HangHoa" Multiplicity="1" />
+          <End Role="ChiTietHoaDonNhap" Type="Self.ChiTietHoaDonNhap" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Input">
-              <PropertyRef Name="Id" />
+            <Principal Role="HangHoa">
+              <PropertyRef Name="IDHangHoa" />
             </Principal>
-            <Dependent Role="InputInfo">
-              <PropertyRef Name="IdInput" />
+            <Dependent Role="ChiTietHoaDonNhap">
+              <PropertyRef Name="IDHangHoa" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__InputInfo__Statu__44FF419A">
-          <End Role="Objects" Type="Self.Objects" Multiplicity="1" />
-          <End Role="InputInfo" Type="Self.InputInfo" Multiplicity="*" />
+        <Association Name="FK__ChiTietHo__IDHan__4AB81AF0">
+          <End Role="HangHoa" Type="Self.HangHoa" Multiplicity="1" />
+          <End Role="ChiTietHoaDonXuat" Type="Self.ChiTietHoaDonXuat" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Objects">
-              <PropertyRef Name="Id" />
+            <Principal Role="HangHoa">
+              <PropertyRef Name="IDHangHoa" />
             </Principal>
-            <Dependent Role="InputInfo">
-              <PropertyRef Name="IdObject" />
+            <Dependent Role="ChiTietHoaDonXuat">
+              <PropertyRef Name="IDHangHoa" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Objects__IdSuppl__3E52440B">
-          <End Role="Supplier" Type="Self.Supplier" Multiplicity="1" />
-          <End Role="Objects" Type="Self.Objects" Multiplicity="*" />
+        <Association Name="FK__ChiTietHoa__MaHD__4316F928">
+          <End Role="HoaDonNhap" Type="Self.HoaDonNhap" Multiplicity="1" />
+          <End Role="ChiTietHoaDonNhap" Type="Self.ChiTietHoaDonNhap" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Supplier">
-              <PropertyRef Name="Id" />
+            <Principal Role="HoaDonNhap">
+              <PropertyRef Name="MaHD" />
             </Principal>
-            <Dependent Role="Objects">
-              <PropertyRef Name="IdSupplier" />
+            <Dependent Role="ChiTietHoaDonNhap">
+              <PropertyRef Name="MaHD" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Objects__IdUnit__3D5E1FD2">
-          <End Role="Unit" Type="Self.Unit" Multiplicity="1" />
-          <End Role="Objects" Type="Self.Objects" Multiplicity="*" />
+        <Association Name="FK__ChiTietHoa__MaHD__49C3F6B7">
+          <End Role="HoaDonXuat" Type="Self.HoaDonXuat" Multiplicity="1" />
+          <End Role="ChiTietHoaDonXuat" Type="Self.ChiTietHoaDonXuat" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Unit">
-              <PropertyRef Name="Id" />
+            <Principal Role="HoaDonXuat">
+              <PropertyRef Name="MaHD" />
             </Principal>
-            <Dependent Role="Objects">
-              <PropertyRef Name="IdUnit" />
+            <Dependent Role="ChiTietHoaDonXuat">
+              <PropertyRef Name="MaHD" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OutputInf__IdCus__4CA06362">
-          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
-          <End Role="OutputInfo" Type="Self.OutputInfo" Multiplicity="*" />
+        <Association Name="FK__HangHoa__IdDonVi__398D8EEE">
+          <End Role="DonViDo" Type="Self.DonViDo" Multiplicity="0..1" />
+          <End Role="HangHoa" Type="Self.HangHoa" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Customer">
+            <Principal Role="DonViDo">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="OutputInfo">
-              <PropertyRef Name="IdCustomer" />
+            <Dependent Role="HangHoa">
+              <PropertyRef Name="IdDonViDo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OutputInf__IdOut__4BAC3F29">
-          <End Role="Output" Type="Self.Output" Multiplicity="1" />
-          <End Role="OutputInfo" Type="Self.OutputInfo" Multiplicity="*" />
+        <Association Name="FK__HoaDonNha__MaNCC__403A8C7D">
+          <End Role="NhaCungCap" Type="Self.NhaCungCap" Multiplicity="0..1" />
+          <End Role="HoaDonNhap" Type="Self.HoaDonNhap" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Output">
-              <PropertyRef Name="Id" />
+            <Principal Role="NhaCungCap">
+              <PropertyRef Name="MaNCC" />
             </Principal>
-            <Dependent Role="OutputInfo">
-              <PropertyRef Name="IdOutputInfo" />
+            <Dependent Role="HoaDonNhap">
+              <PropertyRef Name="MaNCC" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OutputInf__Statu__4AB81AF0">
-          <End Role="Objects" Type="Self.Objects" Multiplicity="1" />
-          <End Role="OutputInfo" Type="Self.OutputInfo" Multiplicity="*" />
+        <Association Name="FK__HoaDonXuat__MaKH__46E78A0C">
+          <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="0..1" />
+          <End Role="HoaDonXuat" Type="Self.HoaDonXuat" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Objects">
+            <Principal Role="KhachHang">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="OutputInfo">
-              <PropertyRef Name="IdObject" />
+            <Dependent Role="HoaDonXuat">
+              <PropertyRef Name="MaKH" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="QuanLyKhoModelStoreContainer">
-          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Input" EntityType="Self.Input" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="InputInfo" EntityType="Self.InputInfo" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Objects" EntityType="Self.Objects" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Output" EntityType="Self.Output" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="OutputInfo" EntityType="Self.OutputInfo" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Supplier" EntityType="Self.Supplier" Schema="dbo" store:Type="Tables" />
+        <EntityContainer Name="QuanLyKhoHangBTLModelStoreContainer">
+          <EntitySet Name="ChiTietHoaDonNhap" EntityType="Self.ChiTietHoaDonNhap" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ChiTietHoaDonXuat" EntityType="Self.ChiTietHoaDonXuat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DonViDo" EntityType="Self.DonViDo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HangHoa" EntityType="Self.HangHoa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HoaDonNhap" EntityType="Self.HoaDonNhap" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HoaDonXuat" EntityType="Self.HoaDonXuat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KhachHang" EntityType="Self.KhachHang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NhaCungCap" EntityType="Self.NhaCungCap" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Unit" EntityType="Self.Unit" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__InputInfo__IdInp__45F365D3" Association="Self.FK__InputInfo__IdInp__45F365D3">
-            <End Role="Input" EntitySet="Input" />
-            <End Role="InputInfo" EntitySet="InputInfo" />
+          <AssociationSet Name="FK__ChiTietHo__IDHan__440B1D61" Association="Self.FK__ChiTietHo__IDHan__440B1D61">
+            <End Role="HangHoa" EntitySet="HangHoa" />
+            <End Role="ChiTietHoaDonNhap" EntitySet="ChiTietHoaDonNhap" />
           </AssociationSet>
-          <AssociationSet Name="FK__InputInfo__Statu__44FF419A" Association="Self.FK__InputInfo__Statu__44FF419A">
-            <End Role="Objects" EntitySet="Objects" />
-            <End Role="InputInfo" EntitySet="InputInfo" />
+          <AssociationSet Name="FK__ChiTietHo__IDHan__4AB81AF0" Association="Self.FK__ChiTietHo__IDHan__4AB81AF0">
+            <End Role="HangHoa" EntitySet="HangHoa" />
+            <End Role="ChiTietHoaDonXuat" EntitySet="ChiTietHoaDonXuat" />
           </AssociationSet>
-          <AssociationSet Name="FK__Objects__IdSuppl__3E52440B" Association="Self.FK__Objects__IdSuppl__3E52440B">
-            <End Role="Supplier" EntitySet="Supplier" />
-            <End Role="Objects" EntitySet="Objects" />
+          <AssociationSet Name="FK__ChiTietHoa__MaHD__4316F928" Association="Self.FK__ChiTietHoa__MaHD__4316F928">
+            <End Role="HoaDonNhap" EntitySet="HoaDonNhap" />
+            <End Role="ChiTietHoaDonNhap" EntitySet="ChiTietHoaDonNhap" />
           </AssociationSet>
-          <AssociationSet Name="FK__Objects__IdUnit__3D5E1FD2" Association="Self.FK__Objects__IdUnit__3D5E1FD2">
-            <End Role="Unit" EntitySet="Unit" />
-            <End Role="Objects" EntitySet="Objects" />
+          <AssociationSet Name="FK__ChiTietHoa__MaHD__49C3F6B7" Association="Self.FK__ChiTietHoa__MaHD__49C3F6B7">
+            <End Role="HoaDonXuat" EntitySet="HoaDonXuat" />
+            <End Role="ChiTietHoaDonXuat" EntitySet="ChiTietHoaDonXuat" />
           </AssociationSet>
-          <AssociationSet Name="FK__OutputInf__IdCus__4CA06362" Association="Self.FK__OutputInf__IdCus__4CA06362">
-            <End Role="Customer" EntitySet="Customer" />
-            <End Role="OutputInfo" EntitySet="OutputInfo" />
+          <AssociationSet Name="FK__HangHoa__IdDonVi__398D8EEE" Association="Self.FK__HangHoa__IdDonVi__398D8EEE">
+            <End Role="DonViDo" EntitySet="DonViDo" />
+            <End Role="HangHoa" EntitySet="HangHoa" />
           </AssociationSet>
-          <AssociationSet Name="FK__OutputInf__IdOut__4BAC3F29" Association="Self.FK__OutputInf__IdOut__4BAC3F29">
-            <End Role="Output" EntitySet="Output" />
-            <End Role="OutputInfo" EntitySet="OutputInfo" />
+          <AssociationSet Name="FK__HoaDonNha__MaNCC__403A8C7D" Association="Self.FK__HoaDonNha__MaNCC__403A8C7D">
+            <End Role="NhaCungCap" EntitySet="NhaCungCap" />
+            <End Role="HoaDonNhap" EntitySet="HoaDonNhap" />
           </AssociationSet>
-          <AssociationSet Name="FK__OutputInf__Statu__4AB81AF0" Association="Self.FK__OutputInf__Statu__4AB81AF0">
-            <End Role="Objects" EntitySet="Objects" />
-            <End Role="OutputInfo" EntitySet="OutputInfo" />
+          <AssociationSet Name="FK__HoaDonXuat__MaKH__46E78A0C" Association="Self.FK__HoaDonXuat__MaKH__46E78A0C">
+            <End Role="KhachHang" EntitySet="KhachHang" />
+            <End Role="HoaDonXuat" EntitySet="HoaDonXuat" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="QuanLyKhoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Customer">
+      <Schema Namespace="QuanLyKhoHangBTLModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ChiTietHoaDonNhap">
+          <Key>
+            <PropertyRef Name="MaHD" />
+            <PropertyRef Name="IDHangHoa" />
+          </Key>
+          <Property Name="MaHD" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IDHangHoa" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SoLuong" Type="Int32" />
+          <NavigationProperty Name="HangHoa" Relationship="Self.FK__ChiTietHo__IDHan__440B1D61" FromRole="ChiTietHoaDonNhap" ToRole="HangHoa" />
+          <NavigationProperty Name="HoaDonNhap" Relationship="Self.FK__ChiTietHoa__MaHD__4316F928" FromRole="ChiTietHoaDonNhap" ToRole="HoaDonNhap" />
+        </EntityType>
+        <EntityType Name="ChiTietHoaDonXuat">
+          <Key>
+            <PropertyRef Name="MaHD" />
+            <PropertyRef Name="IDHangHoa" />
+          </Key>
+          <Property Name="MaHD" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IDHangHoa" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TenHangHoa" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SoLuong" Type="Int32" />
+          <NavigationProperty Name="HangHoa" Relationship="Self.FK__ChiTietHo__IDHan__4AB81AF0" FromRole="ChiTietHoaDonXuat" ToRole="HangHoa" />
+          <NavigationProperty Name="HoaDonXuat" Relationship="Self.FK__ChiTietHoa__MaHD__49C3F6B7" FromRole="ChiTietHoaDonXuat" ToRole="HoaDonXuat" />
+        </EntityType>
+        <EntityType Name="DonViDo">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="DisplayName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="MoreInfo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ContractDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="OutputInfoes" Relationship="Self.FK__OutputInf__IdCus__4CA06362" FromRole="Customer" ToRole="OutputInfo" />
+          <Property Name="TenDonViDo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="HangHoas" Relationship="Self.FK__HangHoa__IdDonVi__398D8EEE" FromRole="DonViDo" ToRole="HangHoa" />
         </EntityType>
-        <EntityType Name="Input">
+        <EntityType Name="HangHoa">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="IDHangHoa" />
           </Key>
-          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="DateInput" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="InputInfoes" Relationship="Self.FK__InputInfo__IdInp__45F365D3" FromRole="Input" ToRole="InputInfo" />
+          <Property Name="IDHangHoa" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TenHangHoa" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IdDonViDo" Type="Int32" />
+          <Property Name="SoLuong" Type="Int32" />
+          <Property Name="GiaThanh" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="MoTa" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ChiTietHoaDonNhaps" Relationship="Self.FK__ChiTietHo__IDHan__440B1D61" FromRole="HangHoa" ToRole="ChiTietHoaDonNhap" />
+          <NavigationProperty Name="ChiTietHoaDonXuats" Relationship="Self.FK__ChiTietHo__IDHan__4AB81AF0" FromRole="HangHoa" ToRole="ChiTietHoaDonXuat" />
+          <NavigationProperty Name="DonViDo" Relationship="Self.FK__HangHoa__IdDonVi__398D8EEE" FromRole="HangHoa" ToRole="DonViDo" />
         </EntityType>
-        <EntityType Name="InputInfo">
+        <EntityType Name="HoaDonNhap">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="MaHD" />
           </Key>
-          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="IdObject" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="IdInput" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Count" Type="Int32" />
-          <Property Name="InputPrice" Type="Double" />
-          <Property Name="OutputPrice" Type="Double" />
-          <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Input" Relationship="Self.FK__InputInfo__IdInp__45F365D3" FromRole="InputInfo" ToRole="Input" />
-          <NavigationProperty Name="Object" Relationship="Self.FK__InputInfo__Statu__44FF419A" FromRole="InputInfo" ToRole="Objects" />
+          <Property Name="MaHD" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MaNCC" Type="Int32" />
+          <Property Name="NgayNhap" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="ChiTietHoaDonNhaps" Relationship="Self.FK__ChiTietHoa__MaHD__4316F928" FromRole="HoaDonNhap" ToRole="ChiTietHoaDonNhap" />
+          <NavigationProperty Name="NhaCungCap" Relationship="Self.FK__HoaDonNha__MaNCC__403A8C7D" FromRole="HoaDonNhap" ToRole="NhaCungCap" />
         </EntityType>
-        <EntityType Name="Object">
+        <EntityType Name="HoaDonXuat">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="MaHD" />
           </Key>
-          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="DisplayName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="IdUnit" Type="Int32" Nullable="false" />
-          <Property Name="IdSupplier" Type="Int32" Nullable="false" />
-          <Property Name="QRCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="BarCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="InputInfoes" Relationship="Self.FK__InputInfo__Statu__44FF419A" FromRole="Objects" ToRole="InputInfo" />
-          <NavigationProperty Name="Supplier" Relationship="Self.FK__Objects__IdSuppl__3E52440B" FromRole="Objects" ToRole="Supplier" />
-          <NavigationProperty Name="Unit" Relationship="Self.FK__Objects__IdUnit__3D5E1FD2" FromRole="Objects" ToRole="Unit" />
-          <NavigationProperty Name="OutputInfoes" Relationship="Self.FK__OutputInf__Statu__4AB81AF0" FromRole="Objects" ToRole="OutputInfo" />
+          <Property Name="MaHD" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MaKH" Type="Int32" />
+          <Property Name="NgayXuat" Type="DateTime" Precision="0" />
+          <Property Name="TongGia" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="ChiTietHoaDonXuats" Relationship="Self.FK__ChiTietHoa__MaHD__49C3F6B7" FromRole="HoaDonXuat" ToRole="ChiTietHoaDonXuat" />
+          <NavigationProperty Name="KhachHang" Relationship="Self.FK__HoaDonXuat__MaKH__46E78A0C" FromRole="HoaDonXuat" ToRole="KhachHang" />
         </EntityType>
-        <EntityType Name="Output">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="DateOutput" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="OutputInfoes" Relationship="Self.FK__OutputInf__IdOut__4BAC3F29" FromRole="Output" ToRole="OutputInfo" />
-        </EntityType>
-        <EntityType Name="OutputInfo">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="IdObject" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="IdOutputInfo" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="IdCustomer" Type="Int32" Nullable="false" />
-          <Property Name="Count" Type="Int32" />
-          <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Customer" Relationship="Self.FK__OutputInf__IdCus__4CA06362" FromRole="OutputInfo" ToRole="Customer" />
-          <NavigationProperty Name="Object" Relationship="Self.FK__OutputInf__Statu__4AB81AF0" FromRole="OutputInfo" ToRole="Objects" />
-          <NavigationProperty Name="Output" Relationship="Self.FK__OutputInf__IdOut__4BAC3F29" FromRole="OutputInfo" ToRole="Output" />
-        </EntityType>
-        <EntityType Name="Supplier">
+        <EntityType Name="KhachHang">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="DisplayName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="MoreInfo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ContractDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Objects" Relationship="Self.FK__Objects__IdSuppl__3E52440B" FromRole="Supplier" ToRole="Objects" />
+          <Property Name="TenKH" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DiaChi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SDT" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="NgayHoptac" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="HoaDonXuats" Relationship="Self.FK__HoaDonXuat__MaKH__46E78A0C" FromRole="KhachHang" ToRole="HoaDonXuat" />
+        </EntityType>
+        <EntityType Name="NhaCungCap">
+          <Key>
+            <PropertyRef Name="MaNCC" />
+          </Key>
+          <Property Name="MaNCC" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenNCC" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DiaChi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SDT" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="NgayHopTac" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="HoaDonNhaps" Relationship="Self.FK__HoaDonNha__MaNCC__403A8C7D" FromRole="NhaCungCap" ToRole="HoaDonNhap" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -319,135 +319,127 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
-        <EntityType Name="Unit">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="DisplayName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Objects" Relationship="Self.FK__Objects__IdUnit__3D5E1FD2" FromRole="Unit" ToRole="Objects" />
-        </EntityType>
-        <Association Name="FK__OutputInf__IdCus__4CA06362">
-          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
-          <End Role="OutputInfo" Type="Self.OutputInfo" Multiplicity="*" />
+        <Association Name="FK__ChiTietHo__IDHan__440B1D61">
+          <End Role="HangHoa" Type="Self.HangHoa" Multiplicity="1" />
+          <End Role="ChiTietHoaDonNhap" Type="Self.ChiTietHoaDonNhap" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Customer">
-              <PropertyRef Name="Id" />
+            <Principal Role="HangHoa">
+              <PropertyRef Name="IDHangHoa" />
             </Principal>
-            <Dependent Role="OutputInfo">
-              <PropertyRef Name="IdCustomer" />
+            <Dependent Role="ChiTietHoaDonNhap">
+              <PropertyRef Name="IDHangHoa" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__InputInfo__IdInp__45F365D3">
-          <End Role="Input" Type="Self.Input" Multiplicity="1" />
-          <End Role="InputInfo" Type="Self.InputInfo" Multiplicity="*" />
+        <Association Name="FK__ChiTietHoa__MaHD__4316F928">
+          <End Role="HoaDonNhap" Type="Self.HoaDonNhap" Multiplicity="1" />
+          <End Role="ChiTietHoaDonNhap" Type="Self.ChiTietHoaDonNhap" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Input">
-              <PropertyRef Name="Id" />
+            <Principal Role="HoaDonNhap">
+              <PropertyRef Name="MaHD" />
             </Principal>
-            <Dependent Role="InputInfo">
-              <PropertyRef Name="IdInput" />
+            <Dependent Role="ChiTietHoaDonNhap">
+              <PropertyRef Name="MaHD" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__InputInfo__Statu__44FF419A">
-          <End Role="Objects" Type="Self.Object" Multiplicity="1" />
-          <End Role="InputInfo" Type="Self.InputInfo" Multiplicity="*" />
+        <Association Name="FK__ChiTietHo__IDHan__4AB81AF0">
+          <End Role="HangHoa" Type="Self.HangHoa" Multiplicity="1" />
+          <End Role="ChiTietHoaDonXuat" Type="Self.ChiTietHoaDonXuat" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Objects">
-              <PropertyRef Name="Id" />
+            <Principal Role="HangHoa">
+              <PropertyRef Name="IDHangHoa" />
             </Principal>
-            <Dependent Role="InputInfo">
-              <PropertyRef Name="IdObject" />
+            <Dependent Role="ChiTietHoaDonXuat">
+              <PropertyRef Name="IDHangHoa" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Objects__IdSuppl__3E52440B">
-          <End Role="Supplier" Type="Self.Supplier" Multiplicity="1" />
-          <End Role="Objects" Type="Self.Object" Multiplicity="*" />
+        <Association Name="FK__ChiTietHoa__MaHD__49C3F6B7">
+          <End Role="HoaDonXuat" Type="Self.HoaDonXuat" Multiplicity="1" />
+          <End Role="ChiTietHoaDonXuat" Type="Self.ChiTietHoaDonXuat" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Supplier">
-              <PropertyRef Name="Id" />
+            <Principal Role="HoaDonXuat">
+              <PropertyRef Name="MaHD" />
             </Principal>
-            <Dependent Role="Objects">
-              <PropertyRef Name="IdSupplier" />
+            <Dependent Role="ChiTietHoaDonXuat">
+              <PropertyRef Name="MaHD" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Objects__IdUnit__3D5E1FD2">
-          <End Role="Unit" Type="Self.Unit" Multiplicity="1" />
-          <End Role="Objects" Type="Self.Object" Multiplicity="*" />
+        <Association Name="FK__HangHoa__IdDonVi__398D8EEE">
+          <End Role="DonViDo" Type="Self.DonViDo" Multiplicity="0..1" />
+          <End Role="HangHoa" Type="Self.HangHoa" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Unit">
+            <Principal Role="DonViDo">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Objects">
-              <PropertyRef Name="IdUnit" />
+            <Dependent Role="HangHoa">
+              <PropertyRef Name="IdDonViDo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OutputInf__Statu__4AB81AF0">
-          <End Role="Objects" Type="Self.Object" Multiplicity="1" />
-          <End Role="OutputInfo" Type="Self.OutputInfo" Multiplicity="*" />
+        <Association Name="FK__HoaDonNha__MaNCC__403A8C7D">
+          <End Role="NhaCungCap" Type="Self.NhaCungCap" Multiplicity="0..1" />
+          <End Role="HoaDonNhap" Type="Self.HoaDonNhap" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Objects">
-              <PropertyRef Name="Id" />
+            <Principal Role="NhaCungCap">
+              <PropertyRef Name="MaNCC" />
             </Principal>
-            <Dependent Role="OutputInfo">
-              <PropertyRef Name="IdObject" />
+            <Dependent Role="HoaDonNhap">
+              <PropertyRef Name="MaNCC" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OutputInf__IdOut__4BAC3F29">
-          <End Role="Output" Type="Self.Output" Multiplicity="1" />
-          <End Role="OutputInfo" Type="Self.OutputInfo" Multiplicity="*" />
+        <Association Name="FK__HoaDonXuat__MaKH__46E78A0C">
+          <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="0..1" />
+          <End Role="HoaDonXuat" Type="Self.HoaDonXuat" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Output">
+            <Principal Role="KhachHang">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="OutputInfo">
-              <PropertyRef Name="IdOutputInfo" />
+            <Dependent Role="HoaDonXuat">
+              <PropertyRef Name="MaKH" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="QuanLyKhoEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Customers" EntityType="Self.Customer" />
-          <EntitySet Name="Inputs" EntityType="Self.Input" />
-          <EntitySet Name="InputInfoes" EntityType="Self.InputInfo" />
-          <EntitySet Name="Objects" EntityType="Self.Object" />
-          <EntitySet Name="Outputs" EntityType="Self.Output" />
-          <EntitySet Name="OutputInfoes" EntityType="Self.OutputInfo" />
-          <EntitySet Name="Suppliers" EntityType="Self.Supplier" />
+        <EntityContainer Name="QuanLyKhoHangBTLEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ChiTietHoaDonNhaps" EntityType="Self.ChiTietHoaDonNhap" />
+          <EntitySet Name="ChiTietHoaDonXuats" EntityType="Self.ChiTietHoaDonXuat" />
+          <EntitySet Name="DonViDoes" EntityType="Self.DonViDo" />
+          <EntitySet Name="HangHoas" EntityType="Self.HangHoa" />
+          <EntitySet Name="HoaDonNhaps" EntityType="Self.HoaDonNhap" />
+          <EntitySet Name="HoaDonXuats" EntityType="Self.HoaDonXuat" />
+          <EntitySet Name="KhachHangs" EntityType="Self.KhachHang" />
+          <EntitySet Name="NhaCungCaps" EntityType="Self.NhaCungCap" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
-          <EntitySet Name="Units" EntityType="Self.Unit" />
-          <AssociationSet Name="FK__OutputInf__IdCus__4CA06362" Association="Self.FK__OutputInf__IdCus__4CA06362">
-            <End Role="Customer" EntitySet="Customers" />
-            <End Role="OutputInfo" EntitySet="OutputInfoes" />
+          <AssociationSet Name="FK__ChiTietHo__IDHan__440B1D61" Association="Self.FK__ChiTietHo__IDHan__440B1D61">
+            <End Role="HangHoa" EntitySet="HangHoas" />
+            <End Role="ChiTietHoaDonNhap" EntitySet="ChiTietHoaDonNhaps" />
           </AssociationSet>
-          <AssociationSet Name="FK__InputInfo__IdInp__45F365D3" Association="Self.FK__InputInfo__IdInp__45F365D3">
-            <End Role="Input" EntitySet="Inputs" />
-            <End Role="InputInfo" EntitySet="InputInfoes" />
+          <AssociationSet Name="FK__ChiTietHoa__MaHD__4316F928" Association="Self.FK__ChiTietHoa__MaHD__4316F928">
+            <End Role="HoaDonNhap" EntitySet="HoaDonNhaps" />
+            <End Role="ChiTietHoaDonNhap" EntitySet="ChiTietHoaDonNhaps" />
           </AssociationSet>
-          <AssociationSet Name="FK__InputInfo__Statu__44FF419A" Association="Self.FK__InputInfo__Statu__44FF419A">
-            <End Role="Objects" EntitySet="Objects" />
-            <End Role="InputInfo" EntitySet="InputInfoes" />
+          <AssociationSet Name="FK__ChiTietHo__IDHan__4AB81AF0" Association="Self.FK__ChiTietHo__IDHan__4AB81AF0">
+            <End Role="HangHoa" EntitySet="HangHoas" />
+            <End Role="ChiTietHoaDonXuat" EntitySet="ChiTietHoaDonXuats" />
           </AssociationSet>
-          <AssociationSet Name="FK__Objects__IdSuppl__3E52440B" Association="Self.FK__Objects__IdSuppl__3E52440B">
-            <End Role="Supplier" EntitySet="Suppliers" />
-            <End Role="Objects" EntitySet="Objects" />
+          <AssociationSet Name="FK__ChiTietHoa__MaHD__49C3F6B7" Association="Self.FK__ChiTietHoa__MaHD__49C3F6B7">
+            <End Role="HoaDonXuat" EntitySet="HoaDonXuats" />
+            <End Role="ChiTietHoaDonXuat" EntitySet="ChiTietHoaDonXuats" />
           </AssociationSet>
-          <AssociationSet Name="FK__Objects__IdUnit__3D5E1FD2" Association="Self.FK__Objects__IdUnit__3D5E1FD2">
-            <End Role="Unit" EntitySet="Units" />
-            <End Role="Objects" EntitySet="Objects" />
+          <AssociationSet Name="FK__HangHoa__IdDonVi__398D8EEE" Association="Self.FK__HangHoa__IdDonVi__398D8EEE">
+            <End Role="DonViDo" EntitySet="DonViDoes" />
+            <End Role="HangHoa" EntitySet="HangHoas" />
           </AssociationSet>
-          <AssociationSet Name="FK__OutputInf__Statu__4AB81AF0" Association="Self.FK__OutputInf__Statu__4AB81AF0">
-            <End Role="Objects" EntitySet="Objects" />
-            <End Role="OutputInfo" EntitySet="OutputInfoes" />
+          <AssociationSet Name="FK__HoaDonNha__MaNCC__403A8C7D" Association="Self.FK__HoaDonNha__MaNCC__403A8C7D">
+            <End Role="NhaCungCap" EntitySet="NhaCungCaps" />
+            <End Role="HoaDonNhap" EntitySet="HoaDonNhaps" />
           </AssociationSet>
-          <AssociationSet Name="FK__OutputInf__IdOut__4BAC3F29" Association="Self.FK__OutputInf__IdOut__4BAC3F29">
-            <End Role="Output" EntitySet="Outputs" />
-            <End Role="OutputInfo" EntitySet="OutputInfoes" />
+          <AssociationSet Name="FK__HoaDonXuat__MaKH__46E78A0C" Association="Self.FK__HoaDonXuat__MaKH__46E78A0C">
+            <End Role="KhachHang" EntitySet="KhachHangs" />
+            <End Role="HoaDonXuat" EntitySet="HoaDonXuats" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -455,103 +447,97 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="QuanLyKhoModelStoreContainer" CdmEntityContainer="QuanLyKhoEntities">
-          <EntitySetMapping Name="Customers">
-            <EntityTypeMapping TypeName="QuanLyKhoModel.Customer">
-              <MappingFragment StoreEntitySet="Customer">
+        <EntityContainerMapping StorageEntityContainer="QuanLyKhoHangBTLModelStoreContainer" CdmEntityContainer="QuanLyKhoHangBTLEntities">
+          <EntitySetMapping Name="ChiTietHoaDonNhaps">
+            <EntityTypeMapping TypeName="QuanLyKhoHangBTLModel.ChiTietHoaDonNhap">
+              <MappingFragment StoreEntitySet="ChiTietHoaDonNhap">
+                <ScalarProperty Name="MaHD" ColumnName="MaHD" />
+                <ScalarProperty Name="IDHangHoa" ColumnName="IDHangHoa" />
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ChiTietHoaDonXuats">
+            <EntityTypeMapping TypeName="QuanLyKhoHangBTLModel.ChiTietHoaDonXuat">
+              <MappingFragment StoreEntitySet="ChiTietHoaDonXuat">
+                <ScalarProperty Name="MaHD" ColumnName="MaHD" />
+                <ScalarProperty Name="IDHangHoa" ColumnName="IDHangHoa" />
+                <ScalarProperty Name="TenHangHoa" ColumnName="TenHangHoa" />
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DonViDoes">
+            <EntityTypeMapping TypeName="QuanLyKhoHangBTLModel.DonViDo">
+              <MappingFragment StoreEntitySet="DonViDo">
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="TenDonViDo" ColumnName="TenDonViDo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HangHoas">
+            <EntityTypeMapping TypeName="QuanLyKhoHangBTLModel.HangHoa">
+              <MappingFragment StoreEntitySet="HangHoa">
+                <ScalarProperty Name="IDHangHoa" ColumnName="IDHangHoa" />
+                <ScalarProperty Name="TenHangHoa" ColumnName="TenHangHoa" />
+                <ScalarProperty Name="IdDonViDo" ColumnName="IdDonViDo" />
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+                <ScalarProperty Name="GiaThanh" ColumnName="GiaThanh" />
+                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HoaDonNhaps">
+            <EntityTypeMapping TypeName="QuanLyKhoHangBTLModel.HoaDonNhap">
+              <MappingFragment StoreEntitySet="HoaDonNhap">
+                <ScalarProperty Name="MaHD" ColumnName="MaHD" />
+                <ScalarProperty Name="MaNCC" ColumnName="MaNCC" />
+                <ScalarProperty Name="NgayNhap" ColumnName="NgayNhap" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HoaDonXuats">
+            <EntityTypeMapping TypeName="QuanLyKhoHangBTLModel.HoaDonXuat">
+              <MappingFragment StoreEntitySet="HoaDonXuat">
+                <ScalarProperty Name="MaHD" ColumnName="MaHD" />
+                <ScalarProperty Name="MaKH" ColumnName="MaKH" />
+                <ScalarProperty Name="NgayXuat" ColumnName="NgayXuat" />
+                <ScalarProperty Name="TongGia" ColumnName="TongGia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KhachHangs">
+            <EntityTypeMapping TypeName="QuanLyKhoHangBTLModel.KhachHang">
+              <MappingFragment StoreEntitySet="KhachHang">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TenKH" ColumnName="TenKH" />
+                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="MoreInfo" ColumnName="MoreInfo" />
-                <ScalarProperty Name="ContractDate" ColumnName="ContractDate" />
+                <ScalarProperty Name="NgayHoptac" ColumnName="NgayHoptac" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Inputs">
-            <EntityTypeMapping TypeName="QuanLyKhoModel.Input">
-              <MappingFragment StoreEntitySet="Input">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="DateInput" ColumnName="DateInput" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="InputInfoes">
-            <EntityTypeMapping TypeName="QuanLyKhoModel.InputInfo">
-              <MappingFragment StoreEntitySet="InputInfo">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="IdObject" ColumnName="IdObject" />
-                <ScalarProperty Name="IdInput" ColumnName="IdInput" />
-                <ScalarProperty Name="Count" ColumnName="Count" />
-                <ScalarProperty Name="InputPrice" ColumnName="InputPrice" />
-                <ScalarProperty Name="OutputPrice" ColumnName="OutputPrice" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Objects">
-            <EntityTypeMapping TypeName="QuanLyKhoModel.Object">
-              <MappingFragment StoreEntitySet="Objects">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="IdUnit" ColumnName="IdUnit" />
-                <ScalarProperty Name="IdSupplier" ColumnName="IdSupplier" />
-                <ScalarProperty Name="QRCode" ColumnName="QRCode" />
-                <ScalarProperty Name="BarCode" ColumnName="BarCode" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Outputs">
-            <EntityTypeMapping TypeName="QuanLyKhoModel.Output">
-              <MappingFragment StoreEntitySet="Output">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="DateOutput" ColumnName="DateOutput" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="OutputInfoes">
-            <EntityTypeMapping TypeName="QuanLyKhoModel.OutputInfo">
-              <MappingFragment StoreEntitySet="OutputInfo">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="IdObject" ColumnName="IdObject" />
-                <ScalarProperty Name="IdOutputInfo" ColumnName="IdOutputInfo" />
-                <ScalarProperty Name="IdCustomer" ColumnName="IdCustomer" />
-                <ScalarProperty Name="Count" ColumnName="Count" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Suppliers">
-            <EntityTypeMapping TypeName="QuanLyKhoModel.Supplier">
-              <MappingFragment StoreEntitySet="Supplier">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <EntitySetMapping Name="NhaCungCaps">
+            <EntityTypeMapping TypeName="QuanLyKhoHangBTLModel.NhaCungCap">
+              <MappingFragment StoreEntitySet="NhaCungCap">
+                <ScalarProperty Name="MaNCC" ColumnName="MaNCC" />
+                <ScalarProperty Name="TenNCC" ColumnName="TenNCC" />
+                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="MoreInfo" ColumnName="MoreInfo" />
-                <ScalarProperty Name="ContractDate" ColumnName="ContractDate" />
+                <ScalarProperty Name="NgayHopTac" ColumnName="NgayHopTac" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="QuanLyKhoModel.sysdiagram">
+            <EntityTypeMapping TypeName="QuanLyKhoHangBTLModel.sysdiagram">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
                 <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
                 <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Units">
-            <EntityTypeMapping TypeName="QuanLyKhoModel.Unit">
-              <MappingFragment StoreEntitySet="Unit">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

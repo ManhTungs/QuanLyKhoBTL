@@ -13,10 +13,10 @@ namespace QuanLyKhoBTL.model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class QuanLyKhoEntities : DbContext
+    public partial class QuanLyKhoHangBTLEntities : DbContext
     {
-        public QuanLyKhoEntities()
-            : base("name=QuanLyKhoEntities")
+        public QuanLyKhoHangBTLEntities()
+            : base("name=QuanLyKhoHangBTLEntities")
         {
         }
     
@@ -25,14 +25,14 @@ namespace QuanLyKhoBTL.model
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Customer> Customers { get; set; }
-        public virtual DbSet<Input> Inputs { get; set; }
-        public virtual DbSet<InputInfo> InputInfoes { get; set; }
-        public virtual DbSet<Object> Objects { get; set; }
-        public virtual DbSet<Output> Outputs { get; set; }
-        public virtual DbSet<OutputInfo> OutputInfoes { get; set; }
-        public virtual DbSet<Supplier> Suppliers { get; set; }
+        public virtual DbSet<ChiTietHoaDonNhap> ChiTietHoaDonNhaps { get; set; }
+        public virtual DbSet<ChiTietHoaDonXuat> ChiTietHoaDonXuats { get; set; }
+        public virtual DbSet<DonViDo> DonViDoes { get; set; }
+        public virtual DbSet<HangHoa> HangHoas { get; set; }
+        public virtual DbSet<HoaDonNhap> HoaDonNhaps { get; set; }
+        public virtual DbSet<HoaDonXuat> HoaDonXuats { get; set; }
+        public virtual DbSet<KhachHang> KhachHangs { get; set; }
+        public virtual DbSet<NhaCungCap> NhaCungCaps { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
-        public virtual DbSet<Unit> Units { get; set; }
     }
 }
