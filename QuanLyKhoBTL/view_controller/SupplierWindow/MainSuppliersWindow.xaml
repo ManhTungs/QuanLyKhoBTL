@@ -8,6 +8,99 @@
         mc:Ignorable="d"
         Title="MainSuppliersWindow" Height="450" Width="800">
     <Grid>
-       
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition ></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <materialDesign:Card Grid.Row="0" Margin="5">
+            <WrapPanel>
+                <TextBox
+                    TextChanged="tb_ten_nha_cung_cap_changed"
+                     Name="tb_ten_nha_cung_cap"
+                     Margin="5 5 20 5"
+VerticalAlignment="Center"
+materialDesign:HintAssist.Hint="Tên Nhà cung cấp"
+Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                <TextBox
+                     
+                    Name="tb_dia_chi"
+                    Margin="5 5 20 5"
+VerticalAlignment="Center"
+materialDesign:HintAssist.Hint="Địa chỉ"
+Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+
+                <TextBox TextChanged="tb_dien_thoai_changed"
+                    Name="tb_dien_thoai"
+                     Margin="5 5 20 5"
+VerticalAlignment="Center"
+materialDesign:HintAssist.Hint="Điện thoại"
+Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                <TextBox
+                    TextChanged="tb_email_changed"
+                    Name="tb_email"
+                     Margin="5 5 20 5"
+VerticalAlignment="Center"
+materialDesign:HintAssist.Hint="Email "
+Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+
+                <DatePicker
+                    Name="dp_ngay_hop_tac"
+                    Margin="5 5 20 5"
+  Width="100"
+  materialDesign:HintAssist.Hint="Ngày hợp tác"
+  materialDesign:TextFieldAssist.HasClearButton="True"
+  Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+            </WrapPanel>
+
+        </materialDesign:Card>
+
+        <materialDesign:Card Grid.Row="1" Margin="5">
+            <WrapPanel>
+                <Button
+                    Name="nbtn_them"
+                    Click="btn_them"
+    Width="100"
+ Margin="20 20 20 20"
+  Content="Thêm"
+  IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+  Style="{StaticResource MaterialDesignFlatSecondaryLightBgButton}"
+  ToolTip="MaterialDesignFlatSecondaryLightBgButton" />
+                <Button
+                    Name="nbtn_sua"
+                    Click="btn_sua"
+Width="100"
+ Margin="20 20 20 20"
+Content="Sửa"
+IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+Style="{StaticResource MaterialDesignFlatSecondaryLightBgButton}"
+ToolTip="MaterialDesignFlatSecondaryLightBgButton" />
+                <Button
+                    Name="nbtn_xoa"
+                    Click="btn_xoa"
+Width="100"
+ Margin="20 20 20 20"
+Content="Xóa"
+IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+Style="{StaticResource MaterialDesignFlatSecondaryLightBgButton}"
+ToolTip="MaterialDesignFlatSecondaryLightBgButton" />
+            </WrapPanel>
+        </materialDesign:Card>
+
+        <materialDesign:Card Grid.Row="2">
+            <ListView SelectionChanged="list_supplier_selectionChanged" Name="list_supplier">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Id" DisplayMemberBinding="{Binding MaNCC}"></GridViewColumn>
+                        <GridViewColumn Header="Tên nhà cung cấp" DisplayMemberBinding="{Binding TenNCC}"></GridViewColumn>
+                        <GridViewColumn Header="Địa chỉ" DisplayMemberBinding="{Binding DiaChi}"></GridViewColumn>
+                        <GridViewColumn Header="Điện thoại" DisplayMemberBinding="{Binding SDT}"></GridViewColumn>
+                        <GridViewColumn Header="Email" DisplayMemberBinding="{Binding Email}"></GridViewColumn>
+                        <GridViewColumn Header="Ngày hợp tác" DisplayMemberBinding="{Binding NgayHopTac}"></GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </materialDesign:Card>
     </Grid>
 </Window>
