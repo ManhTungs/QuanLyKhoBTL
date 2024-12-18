@@ -11,32 +11,84 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
-
+            <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition ></RowDefinition>
+
         </Grid.RowDefinitions>
+
         <materialDesign:Card Grid.Row="0" Margin="5">
             <WrapPanel>
+
+                <TextBox
+                    Name="tb_ma_hoa_don_xuat"
+                    
+                     Margin="5 5 20 5"
+VerticalAlignment="Center"
+materialDesign:HintAssist.Hint="Mã hóa đơn xuất"
+Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+
+                <ComboBox
+                  Name="cbb_ma_hang_hoa"
+                  DisplayMemberPath="TenHangHoa" 
+                  SelectedValuePath="Id" 
+                  ItemsSource="{Binding HangHoa}"
+                   Margin="5 5 20 0"
+materialDesign:HintAssist.Hint="Hàng hóa" >
+                </ComboBox>
+
+                <TextBox
+                    Name="tb_so_luong"
+                   
+                     Margin="5 5 20 5"
+VerticalAlignment="Center"
+materialDesign:HintAssist.Hint="Số lượng"
+Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                <ComboBox
+                  Name="cbb_ma_khach_hang"
+                  DisplayMemberPath="TenKH" 
+                  SelectedValuePath="Id" 
+                  ItemsSource="{Binding KhachHang}"
+                   Margin="5 5 20 0"
+materialDesign:HintAssist.Hint="Khách hàng" >
+                </ComboBox>
+
+                <DatePicker
+                    Name="dp_ngay_xuat"
+                  Margin="5 5 20 0"
+Width="100"
+materialDesign:HintAssist.Hint="Ngày xuất"
+materialDesign:TextFieldAssist.HasClearButton="True"
+Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+            </WrapPanel>
+
+        </materialDesign:Card>
+
+
+        <materialDesign:Card Grid.Row="1" Margin="5">
+            <WrapPanel>
                 <Button
+                    Click="btn_them_click"
     Width="100"
  Margin="20 20 20 20"
   Content="Xuất kho"
   IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
   Style="{StaticResource MaterialDesignFlatSecondaryLightBgButton}"
   ToolTip="MaterialDesignFlatSecondaryLightBgButton" />
-                
+
             </WrapPanel>
         </materialDesign:Card>
 
         <materialDesign:Card Grid.Row="2">
-            <ListView >
+            <ListView Name="list_HoaDonXuat" SelectionChanged="list_HoaDonXuat_selectionChanged">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="Vật tư"></GridViewColumn>
-                        <GridViewColumn Header="Ngày xuất"></GridViewColumn>
-                        <GridViewColumn Header="Số lượng"></GridViewColumn>
-                        <GridViewColumn Header="Khách hàng"></GridViewColumn>
-                        <GridViewColumn Header="Giá xuất"></GridViewColumn>
-                        <GridViewColumn Header="Trạng thái xuất"></GridViewColumn>
+                        <GridViewColumn Header="Mã hóa đơn xuất" DisplayMemberBinding="{Binding chiTietHoaDonXuat.MaHD}"></GridViewColumn>
+                        <GridViewColumn Header="Mã hàng hóa" DisplayMemberBinding="{Binding chiTietHoaDonXuat.IDHangHoa}"></GridViewColumn>
+                        <GridViewColumn Header="Tên hàng hóa " DisplayMemberBinding="{Binding chiTietHoaDonXuat.TenHangHoa}"></GridViewColumn>
+                        <GridViewColumn Header="Số lượng" DisplayMemberBinding="{Binding chiTietHoaDonXuat.SoLuong}"></GridViewColumn>
+                        <GridViewColumn Header="mã Khách hàng" DisplayMemberBinding="{Binding hoaDonXuat.MaKH}"></GridViewColumn>
+                        <GridViewColumn Header="Thành tiền" DisplayMemberBinding="{Binding hoaDonXuat.TongGia}"></GridViewColumn>
+                        <GridViewColumn Header="Ngày xuất" DisplayMemberBinding="{Binding hoaDonXuat.NgayXuat}"></GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>

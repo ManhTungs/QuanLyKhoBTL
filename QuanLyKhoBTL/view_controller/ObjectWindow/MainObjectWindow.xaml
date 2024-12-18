@@ -17,47 +17,42 @@
         <materialDesign:Card Grid.Row="0" Margin="5">
             <WrapPanel>
                 <TextBox
+                    Name="tb_ma_vat_tu"
+                     Margin="5 5 20 5"
+VerticalAlignment="Center"
+materialDesign:HintAssist.Hint="Mã vật tư"
+Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                <TextBox
+                    Name="tb_ten_vat_tu"
                      Margin="5 5 20 5"
 VerticalAlignment="Center"
 materialDesign:HintAssist.Hint="Tên vật tư"
 Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                 <ComboBox
+                    Name="cbb_don_vi_do"
+                    DisplayMemberPath="TenDonViDo" 
+                    SelectedValuePath="Id" 
+                    ItemsSource="{Binding DonViDo}"
                      Margin="5 5 20 0"
-  materialDesign:HintAssist.Hint="Đơn vị đo">
-                    <ComboBoxItem
-    Content="Android" />
-                    <ComboBoxItem
-    Content="iOS" />
-                    <ComboBoxItem
-    Content="Linux" />
-                    <ComboBoxItem
-    Content="Windows" />
+  materialDesign:HintAssist.Hint="Đơn vị đo" SelectionChanged="cbb_don_vi_do_SelectionChanged">
+
                 </ComboBox>
-                <ComboBox
-                     Margin="5 5 20 0"
-  materialDesign:HintAssist.Hint="Nhà cung cấp">
+
+                <TextBox
+                    Name="tb_gia_thanh"
                     
-                    <ComboBoxItem
-    Content="Android" />
-                    <ComboBoxItem
-    Content="iOS" />
-                    <ComboBoxItem
-    Content="Linux" />
-                    <ComboBoxItem
-    Content="Windows" />
-                </ComboBox>
-                
-                <TextBox
                      Margin="5 5 20 5"
 VerticalAlignment="Center"
-materialDesign:HintAssist.Hint="QR Code "
+materialDesign:HintAssist.Hint="Giá thành"
 Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+
                 <TextBox
+                    Name="tb_mo_ta"
+                    
                      Margin="5 5 20 5"
 VerticalAlignment="Center"
-materialDesign:HintAssist.Hint="Bar Code"
+materialDesign:HintAssist.Hint="Mô tả"
 Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                
             </WrapPanel>
 
         </materialDesign:Card>
@@ -65,6 +60,8 @@ Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
         <materialDesign:Card Grid.Row="1" Margin="5">
             <WrapPanel>
                 <Button
+                    Name="nbtn_them"
+                    Click="btn_them_click"
     Width="100"
  Margin="20 20 20 20"
   Content="Thêm"
@@ -72,6 +69,8 @@ Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
   Style="{StaticResource MaterialDesignFlatSecondaryLightBgButton}"
   ToolTip="MaterialDesignFlatSecondaryLightBgButton" />
                 <Button
+                    Name="nbtn_sua"
+Click="btn_sua_click"
 Width="100"
  Margin="20 20 20 20"
 Content="Sửa"
@@ -79,6 +78,8 @@ IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource 
 Style="{StaticResource MaterialDesignFlatSecondaryLightBgButton}"
 ToolTip="MaterialDesignFlatSecondaryLightBgButton" />
                 <Button
+                    Name="nbtn_xoa"
+Click="btn_xoa_click"
 Width="100"
  Margin="20 20 20 20"
 Content="Xóa"
@@ -89,16 +90,15 @@ ToolTip="MaterialDesignFlatSecondaryLightBgButton" />
         </materialDesign:Card>
 
         <materialDesign:Card Grid.Row="2">
-            <ListView >
+            <ListView  Name="list_Object" SelectionChanged="list_object_selectionChanged">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="Id"></GridViewColumn>
-                        <GridViewColumn Header="Tên khách hàng"></GridViewColumn>
-                        <GridViewColumn Header="Địa chỉ"></GridViewColumn>
-                        <GridViewColumn Header="Điện thoại"></GridViewColumn>
-                        <GridViewColumn Header="Email"></GridViewColumn>
-                        <GridViewColumn Header="Thông tin thêm"></GridViewColumn>
-                        <GridViewColumn Header="Ngày hợp tác"></GridViewColumn>
+                        <GridViewColumn Header="Mã vật tư" DisplayMemberBinding="{Binding hangHoa.IDHangHoa}"></GridViewColumn>
+                        <GridViewColumn Header="Tên vật tư" DisplayMemberBinding="{Binding hangHoa.TenHangHoa}"></GridViewColumn>
+                        <GridViewColumn Header="Số lượng" DisplayMemberBinding="{Binding hangHoa.SoLuong}"></GridViewColumn>
+                        <GridViewColumn Header="Đơn vị đo" DisplayMemberBinding="{Binding TenDonViDo}"></GridViewColumn>
+                        <GridViewColumn Header="Giá thành" DisplayMemberBinding="{Binding hangHoa.GiaThanh}"></GridViewColumn>
+                        <GridViewColumn Header="Mô tả" DisplayMemberBinding="{Binding hangHoa.MoTa}"></GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>

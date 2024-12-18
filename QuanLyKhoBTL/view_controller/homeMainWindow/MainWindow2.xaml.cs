@@ -20,6 +20,8 @@ using QuanLyKhoDemo.View.OutPutWindow;
 using QuanLyKhoDemo.View.SupplierWindow;
 using QuanLyKhoDemo.View.UnitWindow;
 
+
+
 namespace QuanLyKhoDemo.View
 {
     /// <summary>
@@ -27,25 +29,27 @@ namespace QuanLyKhoDemo.View
     /// </summary>
     public partial class MainWindow2 : Window
     {
-        private ObservableCollection<Inventory> _inventories;
-        //public ObservableCollection<Inventory> inventories { get => _inventories; set { _inventories = value;OnPropertyChanged();  } }
+
+        CollectionView view;
+        bool isFiltering = false;
+        private ObservableCollection<InputModel> inputModels;
         public MainWindow2()
         {
             InitializeComponent();
-            loadInventory();
+            loadHoaDonNhap();
         }
 
         private void btn_show_unit_window(object sender, RoutedEventArgs e)
         {
 
             MainUnitWindow mainUnitWindow = new MainUnitWindow();
-            mainUnitWindow.ShowDialog();   
-           
+            mainUnitWindow.ShowDialog();
+
         }
 
         private void btn_show_suppliers_window(object sender, RoutedEventArgs e)
         {
-            MainSuppliersWindow mainSuppliersWindow = new MainSuppliersWindow();    
+            MainSuppliersWindow mainSuppliersWindow = new MainSuppliersWindow();
             mainSuppliersWindow.ShowDialog();
         }
 
@@ -58,7 +62,7 @@ namespace QuanLyKhoDemo.View
 
         private void btn_show_object_window(object sender, RoutedEventArgs e)
         {
-           MainObjectWindow mainObjectWindow = new MainObjectWindow();
+            MainObjectWindow mainObjectWindow = new MainObjectWindow();
             mainObjectWindow.ShowDialog();
 
         }
@@ -75,40 +79,98 @@ namespace QuanLyKhoDemo.View
             mainOutputWindow.ShowDialog();
         }
 
-         void loadInventory()
+        void loadHoaDonNhap()
         {
-            //_inventories = new ObservableCollection<Inventory>();
-            //var objectList=DataProvider.Ins.DB.Objects;
-            //int i = 1;
-            //foreach (var item in objectList)
-            //{
-            //    var InputList = DataProvider.Ins.DB.InputInfoes.Where(p => p.IdObject == item.Id);
-            //    var OutputList=DataProvider.Ins.DB.OutputInfoes.Where(p=>p.IdObject == item.Id);
 
-            //    int sumInput=0;
-            //    int sumOutput=0;
+            inputModels = new ObservableCollection<InputModel>();
+            var listObject = DataProvider.Ins.DB.HoaDonNhaps;
+            if (listObject != null)
+            {
+                foreach (var item in listObject)
+                {
+                    var chiTietHoaDonNhap = DataProvider.Ins.DB.ChiTietHoaDonNhaps.Where(p => p.MaHD == item.MaHD).FirstOrDefault() as ChiTietHoaDonNhap;
+                    InputModel inputModel = new InputModel();
+                    inputModel.chiTietHoaDonNhap = chiTietHoaDonNhap;
+                    inputModel.hoaDonNhap = item;
+                    inputModels.Add(inputModel);
 
-            //    if (InputList != null)
-            //    {
-            //        sumInput = (int)InputList.Sum(p => p.Count);
 
-            //    }
+                }
+                list_hoaDonNhap.ItemsSource = inputModels;
 
-            //    if (OutputList != null)
-            //    {
-            //        sumOutput = (int)OutputList.Sum(p => p.Count);
-            //    }
 
-            //    Inventory inventory = new Inventory();
-            //    inventory.STT = i;
-            //    inventory.Count = sumInput-sumOutput;
-            //    inventory.Object=item;
+            }
 
-            //    _inventories.Add(inventory);
-            //}
+            btn_bo_loc.IsEnabled = false;
+        }
 
-            //inventory_list.ItemsSource = _inventories;
-           
+        private void btn_loc_Click(object sender, RoutedEventArgs e)
+        {
+
+
+            if (dp_ngay_bat_dau.SelectedDate.HasValue && dp_ngay_ket_thuc.SelectedDate.HasValue)
+            {
+
+                DateTime ngayBatDau;
+                DateTime ngayKetThuc;
+
+                ngayBatDau = DateTime.Parse(dp_ngay_bat_dau.Text.Trim());
+                ngayKetThuc = DateTime.Parse(dp_ngay_ket_thuc.Text.Trim());
+                if (ngayBatDau < ngayKetThuc)
+                {
+                    view = (CollectionView)CollectionViewSource.GetDefaultView(inputModels);
+                    view.Filter = FilterByDateRange;
+
+                    isFiltering = true;
+                    btn_bo_loc.IsEnabled = true;
+
+                }
+                else
+                {
+                    MessageBox.Show("vui lòng nhập đúng thông tin");
+                }
+
+
+
+            }
+            else
+            {
+                MessageBox.Show("vui lòng nhập đủ thông tin");
+            }
+
+        }
+
+        private bool FilterByDateRange(object item)
+        {
+            DateTime ngayBatDau;
+            DateTime ngayKetThuc;
+
+            ngayBatDau = DateTime.Parse(dp_ngay_bat_dau.Text.Trim());
+            ngayKetThuc = DateTime.Parse(dp_ngay_ket_thuc.Text.Trim());
+            if (item is InputModel inputModel)
+            {
+
+                if (inputModel.hoaDonNhap.NgayNhap < ngayBatDau)
+                    return false;
+
+                if (inputModel.hoaDonNhap.NgayNhap > ngayKetThuc)
+                    return false;
+
+                return true;
+            }
+            return false;
+        }
+
+        private void btn_bo_loc_click(object sender, RoutedEventArgs e)
+        {
+            isFiltering = false;
+            btn_bo_loc.IsEnabled = false;
+            view.Filter = null;
+            view.Refresh();
+
+            dp_ngay_bat_dau.SelectedDate = null;
+            dp_ngay_ket_thuc.SelectedDate = null;
+
         }
     }
 }

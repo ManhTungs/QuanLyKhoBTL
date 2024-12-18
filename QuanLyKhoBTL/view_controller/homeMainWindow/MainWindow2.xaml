@@ -32,7 +32,7 @@
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
-                    
+
                 </Grid.ColumnDefinitions>
                 <Button Click="btn_show_input_window" Grid.Column="0" ToolTip="Nhập kho" >
                     <Grid>
@@ -119,7 +119,7 @@
                         </Grid>
                     </Grid>
                 </Button>
-                
+
             </Grid>
         </Grid>
 
@@ -130,7 +130,7 @@
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
             <!--filter-->
-            
+
 
             <!--list-->
             <materialDesign:Card Grid.Row="1" Margin="10">
@@ -138,11 +138,17 @@
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+
                         <RowDefinition></RowDefinition>
-                        
+
                     </Grid.RowDefinitions>
-                    <Grid Grid.Row="0" >
+                    <Grid Grid.Row="0">
+                        <TextBlock Text="Lịch Sử Nhập kho" FontStyle="Italic" FontWeight="Bold" FontSize="20" Foreground="DarkBlue" Margin="5 5 5 5"></TextBlock>
+                    </Grid>
+                    <Grid Grid.Row="1" >
                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
@@ -150,6 +156,7 @@
 
                         <Grid  Grid.Column="0">
                             <DatePicker
+                                Name="dp_ngay_bat_dau"
 Margin="0 0 10 0"
 materialDesign:HintAssist.Hint="Ngày bắt đầu"
 materialDesign:TextFieldAssist.HasClearButton="True"
@@ -157,6 +164,7 @@ Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
                         </Grid>
                         <Grid Grid.Column="1">
                             <DatePicker
+                                Name="dp_ngay_ket_thuc"
  Margin="0 0 10 0"
 materialDesign:HintAssist.Hint="Ngày kết thúc"
 materialDesign:TextFieldAssist.HasClearButton="True"
@@ -164,20 +172,36 @@ Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
                         </Grid>
                         <Grid Grid.Column="2">
                             <Button
-
-Content="Lọc"
-IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-Style="{StaticResource MaterialDesignRaisedSecondaryLightButton}"
-ToolTip="Resource name: MaterialDesignRaisedSecondaryLightButton" />
+                                Margin="5 5 5 5"
+                                Name="btn_loc"
+                                Click="btn_loc_Click"
+                                Content="Lọc"
+                                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                Style="{StaticResource MaterialDesignRaisedSecondaryLightButton}"
+                                ToolTip="Resource name: MaterialDesignRaisedSecondaryLightButton" />
+                        </Grid>
+                        <Grid Grid.Column="3">
+                            <Button
+                                Margin="5 5 5 5"
+                                Name="btn_bo_loc"
+                                Click="btn_bo_loc_click"
+                                Content="Bỏ Lọc"
+                                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                Style="{StaticResource MaterialDesignRaisedSecondaryLightButton}"
+                                ToolTip="Resource name: MaterialDesignRaisedSecondaryLightButton" />
                         </Grid>
                     </Grid>
-                    <Grid Grid.Row="1" VerticalAlignment="Stretch"  >
-                        <ListView Name="inventory_list">
+
+
+                    <Grid Grid.Row="2" VerticalAlignment="Stretch"  >
+                        <ListView Name="list_hoaDonNhap">
                             <ListView.View>
                                 <GridView>
-                                    <GridViewColumn Header="STT" DisplayMemberBinding="{Binding STT}"></GridViewColumn>
-                                    <GridViewColumn Header="Tên Vật tư" DisplayMemberBinding="{Binding Object.DisplayName}"></GridViewColumn>
-                                    <GridViewColumn Header="Số lượng tồn" DisplayMemberBinding="{Binding Count}"></GridViewColumn>
+                                    <GridViewColumn Header="Mã hóa đơn nhập" DisplayMemberBinding="{Binding hoaDonNhap.MaHD}"></GridViewColumn>
+                                    <GridViewColumn Header="Mã hàng hóa" DisplayMemberBinding="{Binding chiTietHoaDonNhap.IDHangHoa}"></GridViewColumn>
+                                    <GridViewColumn Header="Số lượng" DisplayMemberBinding="{Binding chiTietHoaDonNhap.SoLuong}"></GridViewColumn>
+                                    <GridViewColumn Header="Mã nhà cung cấp" DisplayMemberBinding="{Binding hoaDonNhap.MaNCC}"></GridViewColumn>
+                                    <GridViewColumn Header="Ngày nhập" DisplayMemberBinding="{Binding hoaDonNhap.NgayNhap}"></GridViewColumn>
                                 </GridView>
                             </ListView.View>
                         </ListView>

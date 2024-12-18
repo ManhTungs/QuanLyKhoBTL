@@ -17,37 +17,45 @@
         <materialDesign:Card Grid.Row="0" Margin="5">
             <WrapPanel>
                 <TextBox
+                    Name="tb_ma_hoa_don_nhap"
+                    TextChanged="tb_ma_hoa_don_nhap_text_changed"
                      Margin="5 5 20 5"
 VerticalAlignment="Center"
-materialDesign:HintAssist.Hint="Tên Vật tư"
+materialDesign:HintAssist.Hint="Mã hóa đơn nhập"
 Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                <ComboBox
+                  Name="cbb_ma_hang_hoa"
+                  DisplayMemberPath="TenHangHoa" 
+                  SelectedValuePath="Id" 
+                  ItemsSource="{Binding HangHoa}"
+                   Margin="5 5 20 0"
+materialDesign:HintAssist.Hint="Mã hàng hóa" >
+                </ComboBox>
+                <TextBox
+                    Name="tb_so_luong"
+                    TextChanged="tb_so_luong_text_changed"
+                    Margin="5 5 20 5"
+VerticalAlignment="Center"
+materialDesign:HintAssist.Hint="Số lượng"
+Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+
+
+                <ComboBox
+                  Name="cbb_nha_cung_cap"
+                  DisplayMemberPath="TenNCC" 
+                  SelectedValuePath="Id" 
+                  ItemsSource="{Binding NhaCungCap}"
+                   Margin="5 5 20 0"
+materialDesign:HintAssist.Hint="Nhà cung cấp" >
+                </ComboBox>
+
                 <DatePicker
+                    Name="dp_ngay_nhap"
                   Margin="5 5 20 0"
 Width="100"
 materialDesign:HintAssist.Hint="Ngày nhập"
 materialDesign:TextFieldAssist.HasClearButton="True"
 Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
-                <TextBox
-                    Margin="5 5 20 5"
-VerticalAlignment="Center"
-materialDesign:HintAssist.Hint="Số lượng"
-Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                <TextBox
-                     Margin="5 5 20 5"
-VerticalAlignment="Center"
-materialDesign:HintAssist.Hint="Giá nhập "
-Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                <TextBox
-                     Margin="5 5 20 5"
-VerticalAlignment="Center"
-materialDesign:HintAssist.Hint="Giá xuất "
-Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                <TextBox
-                     Margin="5 5 20 5"
-VerticalAlignment="Center"
-materialDesign:HintAssist.Hint="Trạng thái nhập"
-Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                
             </WrapPanel>
 
         </materialDesign:Card>
@@ -57,14 +65,29 @@ Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                 <Button
     Width="100"
  Margin="20 20 20 20"
+    Click="btn_them"
   Content="Thêm"
   IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
   Style="{StaticResource MaterialDesignFlatSecondaryLightBgButton}"
   ToolTip="MaterialDesignFlatSecondaryLightBgButton" />
-               
+
             </WrapPanel>
         </materialDesign:Card>
 
-        
+        <materialDesign:Card Grid.Row="2">
+            <ListView Name="list_HoaDonNhap" SelectionChanged="list_HoaDonNhap_selectionChanged">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Mã hóa đơn nhập" DisplayMemberBinding="{Binding hoaDonNhap.MaHD}"></GridViewColumn>
+                        <GridViewColumn Header="Mã hàng hóa" DisplayMemberBinding="{Binding chiTietHoaDonNhap.IDHangHoa}"></GridViewColumn>
+                        <GridViewColumn Header="Số lượng" DisplayMemberBinding="{Binding chiTietHoaDonNhap.SoLuong}"></GridViewColumn>
+                        <GridViewColumn Header="Nhà cung cấp" DisplayMemberBinding="{Binding hoaDonNhap.MaNCC}"></GridViewColumn>
+                        <GridViewColumn Header="Ngày nhập" DisplayMemberBinding="{Binding hoaDonNhap.NgayNhap}"></GridViewColumn>
+
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </materialDesign:Card>
+
     </Grid>
 </Window>
